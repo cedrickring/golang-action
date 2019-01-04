@@ -1,5 +1,5 @@
 FROM golang:1.11
 
-COPY entrypoint.sh .
+ADD entrypoint.sh /entrypoint.sh
 
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
