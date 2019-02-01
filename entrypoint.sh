@@ -1,8 +1,11 @@
 #!/bin/sh
 
-set -eu
+set -e
 
-WORKDIR="/go/src/github.com/${GITHUB_REPOSITORY}"
+if [ -z "${IMPORT}" ]; then
+  IMPORT="${GITHUB_REPOSITORY}"
+fi
+WORKDIR="/go/src/github.com/${IMPORT}"
 # create go work dir
 mkdir -p ${WORKDIR}
 # copy all files from workspace to work dir
