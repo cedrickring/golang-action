@@ -14,4 +14,15 @@ mkdir -p "`dirname "${WORKDIR}"`"
 ln -s "${PWD}" "${WORKDIR}"
 cd "${WORKDIR}"
 
-sh -c "$*"
+# If a command was specified with `args="..."`, then run it.  Otherwise,
+# look for something useful to run.
+if [ $# -eq 0 ]; then
+  if [ -r Makefile ]; then
+    make
+  else
+    go build ./...
+    go test ./...
+  fi
+else
+  sh -c "$*"
+fi
