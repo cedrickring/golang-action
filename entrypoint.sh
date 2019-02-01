@@ -5,7 +5,7 @@ set -e
 if [ -z "${IMPORT}" ]; then
   IMPORT="${GITHUB_REPOSITORY}"
 fi
-WORKDIR="/go/src/github.com/${IMPORT}"
+WORKDIR="${GOPATH}/src/github.com/${IMPORT}"
 # create go work dir
 mkdir -p ${WORKDIR}
 # copy all files from workspace to work dir
