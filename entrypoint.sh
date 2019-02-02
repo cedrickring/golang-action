@@ -1,13 +1,28 @@
 #!/bin/sh
 
-set -eu
+set -e
 
-WORKDIR="/go/src/github.com/${GITHUB_REPOSITORY}"
-# create go work dir
-mkdir -p ${WORKDIR}
-# copy all files from workspace to work dir
-cp -R /github/workspace/* ${WORKDIR}
-# cd into the work dir and run all commands from there
-cd ${WORKDIR}
+if [ -z "${IMPORT}" ]; then
+  IMPORT="${GITHUB_REPOSITORY}"
+fi
+WORKDIR="${GOPATH}/src/github.com/${IMPORT}"
 
-sh -c "$*"
+# Go can only find dependencies if they're under $GOPATH/src.
+# GitHub Actions mounts your repository outside of $GOPATH.
+# So symlink the repository into $GOPATH, and then cd to it.
+mkdir -p "`dirname "${WORKDIR}"`"
+ln -s "${PWD}" "${WORKDIR}"
+cd "${WORKDIR}"
+
+# If a command was specified with `args="..."`, then run it.  Otherwise,
+# look for something useful to run.
+if [ $# -eq 0 ]; then
+  if [ -r Makefile ]; then
+    make
+  else
+    go build ./...
+    go test ./...
+  fi
+else
+  sh -c "$*"
+fi
