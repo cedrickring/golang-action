@@ -1,6 +1,6 @@
 FROM golang:1.11
 
-LABEL version="1.0.0"
+LABEL version="1.1.0"
 LABEL repository="https://github.com/cedrickring/golang-action"
 LABEL maintainer="Cedric Kring"
 
