@@ -5,7 +5,7 @@ This Action allows you to run Go commands with your code. It will automatically 
 ## How to use
 
 1. Add an Action
-2. Enter "cedrickring/golang-action@1.1.0" (`@1.1.0-go-1.10` for Golang 1.10) 
+2. Enter "cedrickring/golang-action@1.1.1" (`cedrickring/golang-action/go1.10@1.1.1` for Golang 1.10, 1.11, 1.12) 
 3. If your repo builds with `make` or `go build && go test`, that's all you need.  Otherwise, add a command in the args section like:
     ```bash
     go build -o my_executable main.go
@@ -25,7 +25,7 @@ block like this:
 
 ```hcl
 action "ci" {
-  uses="cedrickring/golang-action@1.1.0"
+  uses="cedrickring/golang-action@1.1.1"
 
   # optional build command:
   args="./build.sh"
@@ -34,5 +34,14 @@ action "ci" {
   env={
     IMPORT="root/repo"
   }
+}
+```
+
+To use a specific golang version (1.10, 1.11, 1.12):
+
+```hcl
+action "ci" {
+  uses="cedrickring/golang-action/go1.12@1.1.1"
+  ...
 }
 ```

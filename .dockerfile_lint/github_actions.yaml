@@ -32,7 +32,7 @@ line_rules:
       regex: /.+/
       level: "info"
       message: "Avoid using ADD"
-      description: "It is generally an anti-pattern to us ADD, use COPY instead."
+      description: "It is generally an anti-pattern to use ADD, use COPY instead."
   EXPOSE:
     paramSyntaxRegex: /.+/
     rules:
