@@ -24,7 +24,7 @@
              required: true
 
     FROM: 
-      paramSyntaxRegex: /^[\w./\-:]+(:[\w.]+)?(-[\w]+)?( as \w+)?$/i
+      paramSyntaxRegex: /^[\w./\-:]+(:\$*[\w.]+)?(-[\w]+)?( as \w+)?$/i
       rules: 
         - 
           label: "is_latest_tag"

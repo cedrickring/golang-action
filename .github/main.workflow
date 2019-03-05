@@ -3,11 +3,6 @@ workflow "Build on Push" {
   resolves = "Build"
 }
 
-workflow "Build and Publish" {
-  on = "release"
-  resolves = "Docker Publish"
-}
-
 action "Lint" {
   uses = "actions/action-builder/shell@master"
   runs = "make"
@@ -22,10 +17,15 @@ action "Test" {
 
 action "Build" {
   needs = ["Lint", "Test"]
-  uses = "actions/docker/cli@master"
-  args = "build -t golang-action ."
+  uses = "actions/action-builder/docker@master"
+  runs = "make"
+  args = "build"
 }
 
+workflow "Build and Publish" {
+  on = "release"
+  resolves = "Docker Publish"
+}
 
 action "Docker Login" {
   uses = "actions/docker/login@master"
@@ -34,8 +34,9 @@ action "Docker Login" {
 
 action "Docker Publish" {
   needs = ["Build", "Docker Login", "Docker Tag"]
-  uses = "actions/docker/cli@master"
-  args = "push cedrickring/golang-action"
+  uses = "actions/action-builder/docker@master"
+  runs = "make"
+  args = "publish"
 }
 
 action "Docker Tag" {
