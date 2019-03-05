@@ -21,3 +21,26 @@ action "Build" {
   runs = "make"
   args = "build"
 }
+
+workflow "Build and Publish" {
+  on = "release"
+  resolves = "Docker Publish"
+}
+
+action "Docker Login" {
+  uses = "actions/docker/login@master"
+  secrets = ["DOCKER_USERNAME", "DOCKER_PASSWORD"]
+}
+
+action "Docker Publish" {
+  needs = ["Build", "Docker Login", "Docker Tag"]
+  uses = "actions/action-builder/docker@master"
+  runs = "make"
+  args = "publish"
+}
+
+action "Docker Tag" {
+  needs = ["Build", "Docker Login"]
+  uses = "actions/docker/tag@master"
+  args = "golang-action cedrickring/golang-action --no-latest"
+}
