@@ -50,6 +50,5 @@ if [ $# -eq 0 ] || [ "$*" = "" ]; then
     go test ./...
   fi
 else
-  echo "RUNNING STUFF: [$*]"
   sh -c "$*"
 fi
