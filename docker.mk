@@ -45,17 +45,17 @@ update-docker-go-versions: ## Updates go go1.10, go1.11 from the main Dockerfile
 
 update-version = sed -i.bak -e 's/LABEL version=".*"/LABEL version="'`build/semver bump $(1) $(ACTION_VERSION)`'"/' Dockerfile && rm Dockerfile.bak
 
-.PHONY: version-bump-major
-version-bump-major: docker-lint
+.PHONY: version-bump-major 
+version-bump-major: docker-lint ## Bumps Action major version $major.$minor.$patch
 	$(call update-version,major)
 	$(MAKE) -C . update-docker-go-versions
 	
-.PHONY: version-bump-minor
-version-bump-minor: docker-lint
+.PHONY: version-bump-minor 
+version-bump-minor: docker-lint ## Bumps Action minor version $major.$minor.$patch
 	$(call update-version,minor)
 	$(MAKE) -C . update-docker-go-versions
 
-.PHONY: version-bump-patch
-version-bump-patch: docker-lint
+.PHONY: version-bump-patch 
+version-bump-patch: docker-lint ## Bumps Action patch version $major.$minor.$patch
 	$(call update-version,patch)
 	$(MAKE) -C . update-docker-go-versions
