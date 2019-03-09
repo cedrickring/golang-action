@@ -10,7 +10,8 @@ action "Lint" {
 }
 
 action "Test" {
-  needs = ["Build", "Test Go Standard", "Test Go Modules", "Test Go Modules Vendor", "Test Go Dep", "Test Go Dep Vendor"]
+  # TODO: Add back "Test Go Dep Vendor" once we resolve issue with `dep check` reporting invalid hash: https://github.com/cedrickring/golang-action/issues/8
+  needs = ["Build", "Test Go Standard", "Test Go Modules", "Test Go Modules Vendor", "Test Go Dep"]
   uses = "actions/action-builder/shell@master"
   runs = "make"
   args = "test"
