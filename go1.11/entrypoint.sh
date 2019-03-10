@@ -38,8 +38,14 @@ if [ $# -eq 0 ] || [ "$*" = "" ]; then
       if [ -r Gopkg.toml ]; then
         # Check if using vendored dependencies
         if [ -d "vendor" ]; then
-          # Check that dep is in sync with /vendor dependencies
-          "$GOPATH/bin/dep" check
+          # Check that dep is in sync with /vendor dependencies and that running dep ensure doesn't result in modifications to Gopkg.lock/Gopkg.toml
+          "$GOPATH/bin/dep" ensure && "$GOPATH/bin/dep" check
+          git_workspace_status="$(git status --porcelain)"
+          if [ -n "${git_workspace_status}" ]; then
+            echo "Unexpected changes were found in dep /vendored. Please run $(dep ensure) and commit changes:";
+            echo "${git_workspace_status}";
+            exit 1;
+          fi
         else
           # Run dep ensure to download and sync dependencies
           "$GOPATH/bin/dep" ensure
