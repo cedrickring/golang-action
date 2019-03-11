@@ -1,4 +1,4 @@
-[![](https://img.shields.io/github/release/cedrickring/golang-action.svg)](https://github.com/cedrickring/golang-action/releases/latest) [![Actions Status](https://wdp9fww0r9.execute-api.us-west-2.amazonaws.com/production/badge/cedrickring/golang-action?cacheSeconds=60)](https://github.com/cedrickring/golang-action/commits/master)
+[![](https://img.shields.io/github/release/cedrickring/golang-action.svg)](https://github.com/cedrickring/golang-action/releases/latest) [![Actions Status](https://wdp9fww0r9.execute-api.us-west-2.amazonaws.com/production/badge/cedrickring/golang-action?cacheSeconds=60&maxAge=60)](https://github.com/cedrickring/golang-action/commits/master)
 # Golang Action
 
 This Action allows you to run Go commands with your code. It will automatically setup your workspace (`~/go/src/github.com/<your-name>/<repo>`) before the command is run.
