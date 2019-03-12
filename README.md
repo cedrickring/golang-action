@@ -38,6 +38,17 @@ action "ci" {
 }
 ```
 
+If your project's go is not located at the root of the repo you can also specifiy environment variable `PROJECT_PATH`:
+```hcl
+action "test_vendored" {
+  uses="cedrickring/golang-action@1.1.1"
+  # optional relative project path, default is root of repo e.g. "./":
+  env={
+    PROJECT_PATH = "./tests/projects/go_modules_vendored"
+  }
+}
+```
+
 To use a specific golang version (1.10, 1.11, 1.12):
 
 ```hcl
