@@ -6,7 +6,7 @@ This Action allows you to run Go commands with your code. It will automatically 
 ## How to use
 
 1. Add an Action
-2. Enter "cedrickring/golang-action@1.1.1" (`cedrickring/golang-action/go1.10@1.1.1` for Golang 1.10, 1.11, 1.12)
+2. Enter "cedrickring/golang-action@1.2.0" (`cedrickring/golang-action/go1.10@1.2.0` for Golang 1.10, 1.11, 1.12, defaults to the latest golang version)
 3. If your repo builds with `make` or `go build && go test`, that's all you need.  Otherwise, add a command in the args section like:
     ```bash
     go build -o my_executable main.go
@@ -26,7 +26,7 @@ block like this:
 
 ```hcl
 action "ci" {
-  uses="cedrickring/golang-action@1.1.1"
+  uses="cedrickring/golang-action@1.2.0"
 
   # optional build command:
   args="./build.sh"
@@ -41,7 +41,7 @@ action "ci" {
 If your project's go is not located at the root of the repo you can also specifiy environment variable `PROJECT_PATH`:
 ```hcl
 action "test_vendored" {
-  uses="cedrickring/golang-action@1.1.1"
+  uses="cedrickring/golang-action@1.2.0"
   # optional relative project path, default is root of repo e.g. "./":
   env={
     PROJECT_PATH = "./tests/projects/go_modules_vendored"
@@ -53,7 +53,7 @@ To use a specific golang version (1.10, 1.11, 1.12):
 
 ```hcl
 action "ci" {
-  uses="cedrickring/golang-action/go1.12@1.1.1"
+  uses="cedrickring/golang-action/go1.12@1.2.0"
   ...
 }
 ```
