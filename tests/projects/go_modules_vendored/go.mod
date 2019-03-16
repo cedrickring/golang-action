@@ -1,4 +1,4 @@
-module github.com/cedrickring/golang-action/tests/projects/go_modules
+module github.com/cedrickring/golang-action/tests/projects/go_modules_vendored
 
 go 1.12
 
