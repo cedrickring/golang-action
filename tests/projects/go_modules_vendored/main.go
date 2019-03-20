@@ -14,7 +14,7 @@
 
 package main
 
-import "github.com/cedrickring/golang-action/tests/projects/go_modules/cmd"
+import "github.com/cedrickring/golang-action/tests/projects/go_modules_vendored/cmd"
 
 func main() {
 	cmd.Execute()
