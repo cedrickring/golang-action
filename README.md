@@ -5,55 +5,67 @@ This Action allows you to run Go commands with your code. It will automatically 
 
 ## How to use
 
-1. Add an Action
-2. Enter "cedrickring/golang-action@1.3.0" (`cedrickring/golang-action/go1.10@1.3.0` for Golang 1.10, 1.11, 1.12, defaults to the latest golang version)
-3. If your repo builds with `make` or `go build && go test`, that's all you need.  Otherwise, add a command in the args section like:
-    ```bash
-    go build -o my_executable main.go
-    ```
-    or run your `make` targets with
-    ```bash
-    make test
-    ```
+Create a `workflow.yaml` file in `.github/workflows` with the following contents:
+```yaml
+on: push
+name: My cool Action
+job:
+  checks:
+    name: run
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+
+    - name: run
+      uses: cedrickring/golang-action@1.3.0
+```
+
+
+If no args are specified and a `Makefile` is detected, this action will run `make`. Otherwise `go test` and `go build` will be run.
+To run a custom command, just use:
+```yaml
+steps:
+- name: Run custom command
+  uses: cedrickring/golang-action@1.3.0
+  with:
+    args: make my-target
+```
 
 If your repository's `import` name is different from the path on GitHub,
 provide the `import` name by adding an environment variable
 `IMPORT=import/name`.  This may be useful if you have forked an open
-source Go project.
-
-If you prefer editing your `main.workflow` files by hand, use an `action`
-block like this:
-
-```hcl
-action "ci" {
-  uses="cedrickring/golang-action@1.3.0"
-
-  # optional build command:
-  args="./build.sh"
-
-  # optional import name:
-  env={
-    IMPORT="root/repo"
-  }
-}
+source Go project:
+```yaml
+steps:
+- name: Run with custom import path
+  uses: cedrickring/golang-action@1.3.0
+  env:
+    IMPORT: "root/repo"
 ```
 
-If your project's go is not located at the root of the repo you can also specifiy environment variable `PROJECT_PATH`:
-```hcl
-action "test_vendored" {
-  uses="cedrickring/golang-action@1.3.0"
-  # optional relative project path, default is root of repo e.g. "./":
-  env={
-    PROJECT_PATH = "./tests/projects/go_modules_vendored"
-  }
-}
+
+To use Go Modules add `GO111MODULE=on` to the step:
+```yaml
+steps:
+- name: Go Modules
+  uses: cedrickring/golang-action@1.3.0
+  env:
+    GO111MODULE: "on"
+```
+
+
+If your go project is not located at the root of the repo you can also specify environment variable `PROJECT_PATH`:
+```yaml
+steps:
+- name: Custom project path
+  uses: cedrickring/golang-action@1.3.0
+  env:
+    PROJECT_PATH: "./path/in/my/project"
 ```
 
 To use a specific golang version (1.10, 1.11, 1.12):
-
-```hcl
-action "ci" {
-  uses="cedrickring/golang-action/go1.12@1.3.0"
-  ...
-}
+```yaml
+steps:
+- name: Use Go 1.11
+  uses: cedrickring/golang-action/go1.11@1.3.0
 ```
