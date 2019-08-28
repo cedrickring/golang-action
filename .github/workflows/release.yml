@@ -1,0 +1,63 @@
+on: release
+name: Build and Publish
+jobs:
+  testGoDepVendor:
+    name: Test Go Dep Vendor
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Test Go Dep Vendor
+      uses: ./
+      env:
+        IMPORT: cedrickring/golang-action
+        PROJECT_PATH: ./tests/projects/go_dep_vendored
+    - name: Test Go Dep
+      uses: ./
+      env:
+        IMPORT: cedrickring/golang-action
+        PROJECT_PATH: ./tests/projects/go_dep
+    - name: Test Go Modules Vendor
+      uses: ./
+      env:
+        IMPORT: cedrickring/golang-action
+        PROJECT_PATH: ./tests/projects/go_modules_vendored
+    - name: Test Go Modules
+      uses: ./
+      env:
+        IMPORT: cedrickring/golang-action
+        PROJECT_PATH: ./tests/projects/go_modules
+    - name: Test Go Standard
+      uses: ./
+      env:
+        IMPORT: cedrickring/golang-action
+        PROJECT_PATH: ./tests/projects/go_standard
+    - name: Lint
+      uses: actions/action-builder/shell@master
+      with:
+        entrypoint: make
+        args: lint
+    - name: Docker Tag
+      uses: actions/action-builder/docker@master
+      with:
+        entrypoint: make
+        args: docker-tag
+    - name: Docker Login
+      uses: actions/docker/login@master
+      env:
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+    - name: Test
+      uses: actions/action-builder/shell@master
+      with:
+        entrypoint: make
+        args: test
+    - name: Build
+      uses: actions/action-builder/docker@master
+      with:
+        entrypoint: make
+        args: build
+    - name: Docker Publish
+      uses: actions/action-builder/docker@master
+      with:
+        entrypoint: make
+        args: publish
