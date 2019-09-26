@@ -9,7 +9,7 @@ Create a `workflow.yaml` file in `.github/workflows` with the following contents
 ```yaml
 on: push
 name: My cool Action
-job:
+jobs:
   checks:
     name: run
     runs-on: ubuntu-latest
