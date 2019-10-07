@@ -18,7 +18,7 @@ jobs:
     - uses: actions/checkout@master
 
     - name: run
-      uses: cedrickring/golang-action@1.4.0
+      uses: cedrickring/golang-action@1.4.1
 ```
 
 
@@ -27,7 +27,7 @@ To run a custom command, just use:
 ```yaml
 steps:
 - name: Run custom command
-  uses: cedrickring/golang-action@1.4.0
+  uses: cedrickring/golang-action@1.4.1
   with:
     args: make my-target
 ```
@@ -39,7 +39,7 @@ source Go project:
 ```yaml
 steps:
 - name: Run with custom import path
-  uses: cedrickring/golang-action@1.4.0
+  uses: cedrickring/golang-action@1.4.1
   env:
     IMPORT: "root/repo"
 ```
@@ -49,7 +49,7 @@ To use Go Modules add `GO111MODULE=on` to the step:
 ```yaml
 steps:
 - name: Go Modules
-  uses: cedrickring/golang-action@1.4.0
+  uses: cedrickring/golang-action@1.4.1
   env:
     GO111MODULE: "on"
 ```
@@ -59,7 +59,7 @@ If your go project is not located at the root of the repo you can also specify e
 ```yaml
 steps:
 - name: Custom project path
-  uses: cedrickring/golang-action@1.4.0
+  uses: cedrickring/golang-action@1.4.1
   env:
     PROJECT_PATH: "./path/in/my/project"
 ```
@@ -68,5 +68,5 @@ To use a specific golang version (1.10, 1.11, 1.12, 1.13), defaults to the lates
 ```yaml
 steps:
 - name: Use Go 1.11
-  uses: cedrickring/golang-action/go1.11@1.4.0
+  uses: cedrickring/golang-action/go1.11@1.4.1
 ```
