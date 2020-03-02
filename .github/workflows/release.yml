@@ -32,17 +32,17 @@ jobs:
         IMPORT: cedrickring/golang-action
         PROJECT_PATH: ./tests/projects/go_standard
     - name: Lint
-      runs: make lint
+      run: make lint
     - name: Test
-      runs: make test
+      run: make test
     - name: Docker Login
       uses: azure/docker-login@v1
       with:
         password: ${{ secrets.DOCKER_PASSWORD }}
         username: ${{ secrets.DOCKER_USERNAME }}
     - name: Docker Tag
-      runs: make docker-tag
+      run: make docker-tag
     - name: Build
-      runs: make test
+      run: make test
     - name: Docker Publish
       run: make publish
