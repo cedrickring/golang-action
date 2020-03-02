@@ -31,6 +31,8 @@ jobs:
       env:
         IMPORT: cedrickring/golang-action
         PROJECT_PATH: ./tests/projects/go_standard
+    - name: Install dockerfile_lint
+      run: sudo npm i -g dockerfile_lint
     - name: Lint
       run: make lint
     - name: Test
