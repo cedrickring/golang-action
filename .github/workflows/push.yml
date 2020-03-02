@@ -32,17 +32,8 @@ jobs:
         IMPORT: cedrickring/golang-action
         PROJECT_PATH: ./tests/projects/go_standard
     - name: Lint
-      uses: actions/action-builder/shell@master
-      with:
-        entrypoint: make
-        args: lint
+      run: make lint
     - name: Test
-      uses: actions/action-builder/shell@master
-      with:
-        entrypoint: make
-        args: test
+      run: make test
     - name: Build
-      uses: actions/action-builder/docker@master
-      with:
-        entrypoint: make
-        args: build
+      run: make build
