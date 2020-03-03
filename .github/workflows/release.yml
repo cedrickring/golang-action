@@ -31,33 +31,20 @@ jobs:
       env:
         IMPORT: cedrickring/golang-action
         PROJECT_PATH: ./tests/projects/go_standard
+    - name: Install dockerfile_lint
+      run: sudo npm i -g dockerfile_lint
     - name: Lint
-      uses: actions/action-builder/shell@master
-      with:
-        entrypoint: make
-        args: lint
-    - name: Docker Tag
-      uses: actions/action-builder/docker@master
-      with:
-        entrypoint: make
-        args: docker-tag
-    - name: Docker Login
-      uses: actions/docker/login@master
-      env:
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      run: make lint
     - name: Test
-      uses: actions/action-builder/shell@master
+      run: make test
+    - name: Docker Login
+      uses: azure/docker-login@v1
       with:
-        entrypoint: make
-        args: test
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        username: ${{ secrets.DOCKER_USERNAME }}
+    - name: Docker Tag
+      run: make docker-tag
     - name: Build
-      uses: actions/action-builder/docker@master
-      with:
-        entrypoint: make
-        args: build
+      run: make test
     - name: Docker Publish
-      uses: actions/action-builder/docker@master
-      with:
-        entrypoint: make
-        args: publish
+      run: make publish

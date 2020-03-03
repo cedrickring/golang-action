@@ -10,6 +10,9 @@ ACTION_MINOR_VERSION=$(shell build/semver get minor $(ACTION_VERSION))
 
 .PHONY: docker-lint
 docker-lint: update-docker-go-versions ## Run Dockerfile Lint on all dockerfiles.
+ifeq (, $(shell which dockerfile_lint))
+$(error "dockerfile_lint not installed")
+endif
 	dockerfile_lint -r $(ROOT_DIR)/.dockerfile_lint/github_actions.yaml $(wildcard Dockerfile* */Dockerfile*)
 
 .PHONY: docker-build
