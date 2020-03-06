@@ -1,0 +1,9 @@
+name: 'asdasda'
+description: 'Run Golang commands'
+author: '@cedrickring'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+branding:
+  icon: 'box'
+  color: 'blue'
