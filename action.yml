@@ -1,4 +1,4 @@
-name: 'asdasda'
+name: 'Golang Action'
 description: 'Run Golang commands'
 author: '@cedrickring'
 runs:
