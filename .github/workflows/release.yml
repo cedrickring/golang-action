@@ -1,50 +1,19 @@
 on: release
-name: Build and Publish
+name: Publish to Docker Hub
 jobs:
-  testGoDepVendor:
-    name: Test Go Dep Vendor
+  publish:
+    name: Publish docker images
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: Test Go Dep Vendor
-      uses: ./
-      env:
-        IMPORT: cedrickring/golang-action
-        PROJECT_PATH: ./tests/projects/go_dep_vendored
-    - name: Test Go Dep
-      uses: ./
-      env:
-        IMPORT: cedrickring/golang-action
-        PROJECT_PATH: ./tests/projects/go_dep
-    - name: Test Go Modules Vendor
-      uses: ./
-      env:
-        IMPORT: cedrickring/golang-action
-        PROJECT_PATH: ./tests/projects/go_modules_vendored
-    - name: Test Go Modules
-      uses: ./
-      env:
-        IMPORT: cedrickring/golang-action
-        PROJECT_PATH: ./tests/projects/go_modules
-    - name: Test Go Standard
-      uses: ./
-      env:
-        IMPORT: cedrickring/golang-action
-        PROJECT_PATH: ./tests/projects/go_standard
-    - name: Install dockerfile_lint
-      run: sudo npm i -g dockerfile_lint
-    - name: Lint
-      run: make lint
-    - name: Test
-      run: make test
     - name: Docker Login
       uses: azure/docker-login@v1
       with:
         password: ${{ secrets.DOCKER_PASSWORD }}
         username: ${{ secrets.DOCKER_USERNAME }}
+    - name: Docker Build
+      run: make build
     - name: Docker Tag
       run: make docker-tag
-    - name: Build
-      run: make test
     - name: Docker Publish
       run: make publish
