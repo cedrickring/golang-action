@@ -34,3 +34,5 @@ jobs:
       run: make test
     - name: Docker Build
       run: make build
+    - name: Check all versions
+      run: make docker-check
