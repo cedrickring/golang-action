@@ -1,8 +1,7 @@
-# on:
-#  push:
-#    branches:
-#    - master
-on: pull_request
+on:
+  push:
+    branches:
+    - master
 name: Test build on push
 jobs:
   go-test:

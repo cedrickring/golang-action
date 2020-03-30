@@ -1,5 +1,4 @@
-#on: release
-on: pull_request
+on: release
 name: Publish to Docker Hub
 jobs:
   publish:
