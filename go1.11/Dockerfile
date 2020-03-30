@@ -2,7 +2,7 @@ FROM golang:1.11
 
 LABEL name="Golang Action"
 LABEL maintainer="Cedric Kring"
-LABEL version="1.5.0"
+LABEL version="1.5.2"
 LABEL repository="https://github.com/cedrickring/golang-action"
 
 LABEL com.github.actions.name="Golang Action"
