@@ -27,13 +27,13 @@ docker-build: update-docker-go-versions ## Build the top level Dockerfile using 
 .PHONY: docker-check
 docker-check:
 	for version in $(GO_VERSIONS); do \
-  		cp tests/projects/go_standard tests/projects/go_standard_$$version; \
+  		cp -r tests/projects/go_standard tests/projects/go_standard_$$version; \
 		docker run --rm \
 			-v $(shell pwd)/tests/projects/go_standard_$$version:/github/workspace \
 			-e GITHUB_REPOSITORY="golang-action" \
 			-e GITHUB_WORKSPACE="/github/workspace"\
 			--workdir /github/workspace \
-		  	$(IMAGE_NAME):$$version \
+		  	$(IMAGE_NAME):$$version; \
 	done
 
 .PHONY: docker-tag
