@@ -32,7 +32,7 @@ docker-check:
 			-v $(shell pwd)/tests/projects/go_standard_$$version:/github/workspace \
 			-e GITHUB_REPOSITORY="golang-action" \
 			-e GITHUB_WORKSPACE="/github/workspace"\
-			--workdir /github/workspace \
+			--workdir /github/workspace || exit 1; \
 		  	$(IMAGE_NAME):$$version; \
 	done
 
