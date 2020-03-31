@@ -1,11 +1,8 @@
-on:
-  push:
-    branches:
-    - master
-name: Test build on push
+on: pull_request
+name: Run checks
 jobs:
-  go-test:
-    name: Test go configurations
+  go-checks:
+    name: Run go checks
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
@@ -24,8 +21,8 @@ jobs:
       env:
         IMPORT: cedrickring/golang-action
         PROJECT_PATH: ./tests/projects/go_standard
-  test:
-    name: Run tests and build
+  action-checks:
+    name: Run action checks
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
@@ -35,5 +32,7 @@ jobs:
       run: make lint
     - name: Test
       run: make test
-    - name: Build
+    - name: Docker Build
       run: make build
+    - name: Check all versions
+      run: make docker-check
