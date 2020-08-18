@@ -64,7 +64,7 @@ steps:
     PROJECT_PATH: "./path/in/my/project"
 ```
 
-To use a specific golang version (1.10, 1.11, 1.12, 1.13, 1.14), defaults to the latest version:
+To use a specific golang version (1.10, 1.11, 1.12, 1.13, 1.14, 1.15), defaults to the latest version:
 ```yaml
 steps:
 - name: Use Go 1.11
