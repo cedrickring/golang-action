@@ -3,11 +3,11 @@
 set -e
 
 # PROJECT_PATH specifies the subdirectory in the working directory that the Go project is
-if [ -z "${PROJECT_PATH}" ]; then
-  PROJECT_PATH="."
+if [ -z "${INPUT_PROJECTPATH}" ]; then
+  INPUT_PROJECTPATH="."
 fi
 
-cd "${WORKDIR}/${PROJECT_PATH}"
+cd "${GITHUB_WORKSPACE}/${INPUT_PROJECTPATH}"
 
 # If a command was specified with `args: "..."`, then run it.  Otherwise,
 # look for something useful to run.
