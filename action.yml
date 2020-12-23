@@ -14,7 +14,7 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   env:
-    PROJECT_PATH: '${{ inputs.customCommand }}'
+    PROJECT_PATH: '${{ inputs.projectPath }}'
   args:
     - ${{ inputs.customCommand }}
 branding:
