@@ -1,9 +1,22 @@
 name: 'Golang Action'
 description: 'Run Golang commands'
 author: '@cedrickring'
+inputs:
+  projectPath:
+    description: 'Path to the go project inside the repository structure'
+    required: false
+    default: '.'
+  customCommand:
+    description: 'Command to run'
+    required: false
+    default: ''
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  env:
+    PROJECT_PATH: '${{ inputs.customCommand }}'
+  args:
+    - ${{ inputs.customCommand }}
 branding:
   icon: 'box'
   color: 'blue'
