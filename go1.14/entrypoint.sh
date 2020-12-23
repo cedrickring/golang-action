@@ -8,8 +8,8 @@ fi
 WORKDIR="${GOPATH}/src/github.com/${IMPORT}"
 
 # PROJECT_PATH specifies the subdirectory in the working directory that the Go project is
-if [ -z "${PROJECT_PATH}" ]; then
-  PROJECT_PATH="."
+if [ -z "${INPUT_PROJECTPATH}" ]; then
+  INPUT_PROJECTPATH="."
 fi
 
 # Go can only find dependencies if they're under $GOPATH/src.
@@ -17,9 +17,9 @@ fi
 # So symlink the repository into $GOPATH, and then cd to it.
 mkdir -p "$(dirname "${WORKDIR}")"
 ln -s "${PWD}" "${WORKDIR}"
-cd "${WORKDIR}/${PROJECT_PATH}"
+cd "${WORKDIR}/${INPUT_PROJECTPATH}"
 
-# If a command was specified with `args="..."`, then run it.  Otherwise,
+# If a command was specified with `args: "..."`, then run it.  Otherwise,
 # look for something useful to run.
 if [ $# -eq 0 ] || [ "$*" = "" ]; then
   if [ -r Makefile ]; then

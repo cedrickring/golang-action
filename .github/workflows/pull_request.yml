@@ -1,26 +1,23 @@
 on: pull_request
 name: Run checks
 jobs:
-  go-checks:
-    name: Run go checks
+  go-test:
+    name: Test go configurations
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: Test Go Modules Vendor
-      uses: ./
-      env:
-        IMPORT: cedrickring/golang-action
-        PROJECT_PATH: ./tests/projects/go_modules_vendored
-    - name: Test Go Modules
-      uses: ./
-      env:
-        IMPORT: cedrickring/golang-action
-        PROJECT_PATH: ./tests/projects/go_modules
-    - name: Test Go Standard
-      uses: ./
-      env:
-        IMPORT: cedrickring/golang-action
-        PROJECT_PATH: ./tests/projects/go_standard
+      - uses: actions/checkout@master
+      - name: Test Go Modules Vendor
+        uses: ./
+        with:
+          projectPath: tests/projects/go_modules_vendored
+      - name: Test Go Modules
+        uses: ./
+        with:
+          projectPath: tests/projects/go_modules
+      - name: Test Go Standard
+        uses: ./
+        with:
+          projectPath: tests/projects/go_standard
   action-checks:
     name: Run action checks
     runs-on: ubuntu-latest
