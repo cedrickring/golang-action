@@ -31,7 +31,7 @@ steps:
 - name: Run custom command
   uses: cedrickring/golang-action@v2.0.0
   with:
-    args: make my-target
+    customCommand: make my-target
 ```
 
 If your go project is not located at the root of the repo you can also specify environment variable `PROJECT_PATH`:
@@ -39,8 +39,8 @@ If your go project is not located at the root of the repo you can also specify e
 steps:
 - name: Custom project path
   uses: cedrickring/golang-action@v2.0.0
-  env:
-    PROJECT_PATH: "./path/in/my/project"
+  with:
+    projectPath: "path/in/my/project"
 ```
 
 To use a specific golang version (1.14, 1.15), defaults to the latest version:
