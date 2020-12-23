@@ -12,15 +12,15 @@ jobs:
     - name: Test Go Modules Vendor
       uses: ./
       with:
-        projectPath: ./tests/projects/go_modules_vendored
+        projectPath: tests/projects/go_modules_vendored
     - name: Test Go Modules
       uses: ./
       with:
-        projectPath: ./tests/projects/go_modules
+        projectPath: tests/projects/go_modules
     - name: Test Go Standard
       uses: ./
       with:
-        projectPath: ./tests/projects/go_standard
+        projectPath: tests/projects/go_standard
   test:
     name: Run tests and build
     runs-on: ubuntu-latest
