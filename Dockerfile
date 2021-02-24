@@ -1,8 +1,8 @@
-FROM golang:1.15
+FROM golang:1.16
 
 LABEL name="Golang Action"
 LABEL maintainer="Cedric Kring"
-LABEL version="1.6.0"
+LABEL version="2.0.0"
 LABEL repository="https://github.com/cedrickring/golang-action"
 
 LABEL com.github.actions.name="Golang Action"
