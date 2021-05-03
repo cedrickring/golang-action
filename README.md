@@ -1,4 +1,4 @@
-[![](https://img.shields.io/github/release/ce1rickring/golang-action.svg)](https://github.com/cedrickring/golang-action/releases/latest) [![Actions Status](https://github.com/cedrickring/golang-action/workflows/Build%20on%20Push/badge.svg)](https://github.com/cedrickring/golang-action/actions)
+[![](https://img.shields.io/github/release/cedrickring/golang-action.svg)](https://github.com/cedrickring/golang-action/releases/latest) [![Actions Status](https://github.com/cedrickring/golang-action/workflows/Build%20on%20Push/badge.svg)](https://github.com/cedrickring/golang-action/actions)
 
 # Golang Action
 
