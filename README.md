@@ -1,5 +1,7 @@
 [![](https://img.shields.io/github/release/cedrickring/golang-action.svg)](https://github.com/cedrickring/golang-action/releases/latest) [![Actions Status](https://github.com/cedrickring/golang-action/workflows/Build%20on%20Push/badge.svg)](https://github.com/cedrickring/golang-action/actions)
 
+**IMPORTANT**: This action will **no longer be maintained** by myself and thus will not support versions newer than Golang 1.16. I highly recommend using the [offical actions/setup-go action](https://github.com/actions/setup-go) which does exactly the same as this action (+ with some more features). Originally this action was helpful when there was the requirement to properly place go projects in the `$GOPATH`. As this is no longer needed, setting up the proper go version is all you need. However I will kindly review and approve PRs with bugfixes only.
+
 # Golang Action
 
 This Action allows you to run Go commands with your code. It will automatically setup your workspace (`~/go/src/github.com/<your-name>/<repo>`) before the command is run.
