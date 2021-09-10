@@ -25,6 +25,8 @@ jobs:
         IMPORT: cedrickring/golang-action
         PROJECT_PATH: ./tests/projects/go_standard
   test:
+    permissions:
+      contents: read
     name: Run tests and build
     runs-on: ubuntu-latest
     steps:

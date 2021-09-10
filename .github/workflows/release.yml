@@ -2,6 +2,8 @@ on: release
 name: Publish to Docker Hub
 jobs:
   publish:
+    permissions:
+      contents: read
     name: Publish docker images
     runs-on: ubuntu-latest
     steps:
